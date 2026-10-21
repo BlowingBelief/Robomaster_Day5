@@ -38,10 +38,10 @@ class IMU {
   uint8_t raw_gyro_range = 0;
   uint8_t rx_gyro_data[6]{};
 
-  // 换安装方法的时候我要改这个矩阵：第 i 行是机体第 i 轴。按照飞书里的，默认 X、Z 取反，Y 不变。
+  // 第 i 行是机体第 i 轴。X、Y 取反，Z 不变，平放时机体 Z 朝上，滚转初始为 0。
   float R_imu_[3][3] = {{-1.0f, 0.0f, 0.0f},
-                        {0.0f, 1.0f, 0.0f},
-                        {0.0f, 0.0f, -1.0f}};
+                        {0.0f, -1.0f, 0.0f},
+                        {0.0f, 0.0f, 1.0f}};
 
  private:
   static constexpr uint16_t kGyroBiasSamples = 1000;
